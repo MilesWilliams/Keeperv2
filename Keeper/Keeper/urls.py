@@ -17,6 +17,7 @@ from django.contrib import admin
 from organizations.backends import invitation_backend
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework_jwt.views import obtain_jwt_token
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
@@ -26,9 +27,10 @@ urlpatterns = [
     url(r'^api/tasks/', include('Tasks.api.urls', namespace='tasks-api')),
     url(r'^api/projects/', include('Project.api.urls', namespace='projects-api')),
     url(r'^api/organization/', include('Organizations.api.urls', namespace='users-api')),
+    url(r'^api-token-auth/', obtain_jwt_token),
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    
+
