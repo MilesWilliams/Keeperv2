@@ -1,0 +1,22 @@
+<section class="login-page">
+    <md-card flex="flex" flex-gt-sm="50" flex-gt-md="33">
+        <md-icon svgIcon="logo"></md-icon>
+        <md-card-content>
+            <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="login-wrapper">
+                <div class="form-fieldlockup">
+                    <div class="input-field">
+                        <md-input-container>
+                            <input mdInput type="text" placeholder="Enter Your Username" name="username" id="username" formControlName="username">
+                        </md-input-container>
+                    </div>
+                    <div class="input-field">
+                        <md-input-container>
+                            <input mdInput type="password" placeholder="Enter Your Password" name="password" id="password" formControlName="password">
+                        </md-input-container>
+                    </div>
+                    <button md-raised-button ripple color="accent" type="submit">Login</button>
+                </div>
+            </form>
+        </md-card-content>
+    </md-card>
+</section>

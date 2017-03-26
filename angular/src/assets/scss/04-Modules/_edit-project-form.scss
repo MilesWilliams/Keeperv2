@@ -1,0 +1,30 @@
+project-edit {
+   .mat-card {
+        margin-top: 117px;
+    }
+}
+md-input-container {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+.dual-group {
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    md-input-container {
+        width: 48%;
+    }
+}
+
+.center{
+    text-align: center;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

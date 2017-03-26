@@ -1,0 +1,43 @@
+<div class="content-wrapper">
+	<div class="todo">
+		<md-card>
+			<form [formGroup]="todoAdd" name="todoAddForm" (ngSubmit)="save()">
+				<h2>Add a Todo</h2>
+				<div class="form-group">
+					<md-input-container [ngClass]="active">
+						<input mdInput [(ngModel)]="todoAdd.item" placeholder="Title" value="{{todoAdd.title}}" class="mdl-textfield__input" type="text" name="title" id="input_1"  formControlName="title" required>
+					</md-input-container>
+				</div>
+				<div class="form-group">
+					<md-input-container>
+						<input mdInput [(ngModel)]="todoAdd.due_date" placeholder="Due Date" value="{{todoAdd.due_date}}" class="mdl-textfield__input" type="date" name="due_date" id="input_1"  formControlName="due_date" >
+					</md-input-container>
+				</div>
+				<div class="form-group">
+					<md-select placeholder="Projects" [(ngModel)]="todoAdd.project" formControlName="project" (change)="getSubProjects(project.value)">
+						<ng-template ngFor let-project [ngForOf]="allProjectNames">
+							<md-option value="{{project.id}}" >
+								{{project.name}}
+							</md-option>
+						</ng-template>
+					</md-select>
+				</div>
+				<div *ngIf="subprojects != undefined && subprojects.length > 0" class="form-group">
+                    <md-select placeholder="Sub-Projects" [(ngModel)]="todoAdd.sub_project" formControlName="sub_project">
+                        <ng-template ngFor let-project [ngForOf]="subprojects">
+							<md-option value="{{project.id}}" >
+								{{project.name}}
+							</md-option>
+                        </ng-template>
+                    </md-select>
+				</div>
+				<div class="form-group">
+					<md-input-container>
+						<textarea mdInput [(ngModel)]="todoAdd.notes" placeholder="Notes" value="{{todoAdd.notes}}" class="mdl-textfield__input" type="text" name="item" id="input_2"  formControlName="notes"></textarea>
+					</md-input-container>
+				</div>
+				<button md-raised-button ripple color="accent" type="submit">Save</button>
+			</form>
+		</md-card>
+	</div>
+</div>

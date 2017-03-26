@@ -1,0 +1,60 @@
+body {
+	// background-color: #eee
+}
+main {
+	display: flex;
+}
+
+.todo {
+	padding: 20px;
+	// width: 700px;
+    // margin: auto;
+	h1 {
+		color: #4a4a4a;
+		font: {
+			family: Verdana, Geneva, Tahoma, sans-serif;
+			size: 48px;
+		}
+		margin-top: 0;
+		text-align: center;
+	}
+	h6 {
+		max-width: 700px;
+		margin: 24px auto;
+		span {
+			color: #ff4081;
+		}
+	}
+	form {
+		text-align: center;
+		margin-bottom: 50px;
+		display: flex;
+		flex-direction: column;
+		width: 500px;
+		margin: auto;
+		margin-top: 10%;
+		padding: 40px 20px;
+		.mat-input-container {
+			margin-bottom: 15px;
+		}
+		>div {
+			margin: auto;
+			width: 500px;
+
+			.mdl-textfield__label {
+				font-size: 16px !important;
+			}
+		}
+		button {
+			margin-top: 30px;
+			max-width: 144px;
+			height: 50px;
+		}
+	}
+	ul {
+		margin:50px auto auto auto;
+		width: 809px;
+		padding: 0;
+
+	}
+}

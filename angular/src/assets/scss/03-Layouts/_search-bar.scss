@@ -1,0 +1,20 @@
+.search-bar {
+    md-card {
+        // max-width: 1000px;
+        margin: auto;
+        margin-top: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        md-input-container {
+            max-width: 800px;
+            >div {
+                margin: 0;
+            }
+            .mat-input-underline {
+                display: none;
+            }
+        }
+    }
+}

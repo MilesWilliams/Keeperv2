@@ -1,0 +1,18 @@
+.add-button {
+    
+    /* btn: */
+    background: #2A3245;
+    border-radius: 18px;
+    padding: 10px 15px;
+    font-size: 14px;
+    color: #fff;
+    md-icon {
+        margin-right: 10px !important;
+        height: 12px;
+        width: 13px;
+    }
+
+    &.margin-top {
+        margin-top: 50px;
+    }
+}

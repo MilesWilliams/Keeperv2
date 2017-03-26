@@ -1,0 +1,40 @@
+<form [formGroup]="todoAdd" name="todoAddForm" class="modal-add-task" *ngIf="selectedProject" (ngSubmit)="save()">
+    <div class="overlay">
+        <md-card>
+            <div class="header">
+                <h2>Add a Task</h2>
+                <md-icon svgIcon="cross" (click)="close()"></md-icon>
+            </div>
+            <div class="form-group">
+                <input [(ngModel)]="project.project" value="{{selectedProject.project}}" class="mdl-textfield__input" type="text"
+                    name="selectedProject.project" formControlName="project" hidden>
+                <md-input-container [ngClass]="active">
+                    <input mdInput [(ngModel)]="selectedProject.title" placeholder="Title" value="{{selectedProject.title}}" class="mdl-textfield__input" type="text"
+                        name="title" id="input_1" formControlName="title" required>
+                </md-input-container>
+            </div>
+            <div class="form-group">
+                <md-input-container>
+                    <input mdInput [(ngModel)]="selectedProject.due_date" placeholder="Due Date" value="{{selectedProject.due_date}}" class="mdl-textfield__input"
+                        type="date" name="due_date" formControlName="due_date">
+                </md-input-container>
+            </div>
+            <div class="form-group">
+                <md-select placeholder="Sub Projects" [(ngModel)]="selectedProject.singleProject" formControlName="sub_project">
+                    <ng-template ngFor let-sub [ngForOf]="selectedProject.subprojects">
+                        <md-option value="{{sub.id}}">
+                            {{sub.name}}
+                        </md-option>
+                    </ng-template>
+                </md-select>
+            </div>
+            <div class="form-group">
+                <md-input-container>
+                    <textarea mdInput [(ngModel)]="selectedProject.notes" placeholder="Notes" value="{{selectedProject.notes}}" class="mdl-textfield__input"
+                        type="text" name="item" id="input_2" formControlName="notes"></textarea>
+                </md-input-container>
+            </div>
+            <button md-raised-button ripple color="accent" type="submit">Add Task</button>
+        </md-card>
+    </div>
+</form>

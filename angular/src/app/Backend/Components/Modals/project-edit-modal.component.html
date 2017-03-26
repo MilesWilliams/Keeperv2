@@ -1,0 +1,43 @@
+<form [formGroup]="projectEdit" class="modal-add-task" name="projectEditForm" (ngSubmit)="save()" *ngIf="selectedEditProject">
+    <div class="overlay">
+        <md-card>
+            <md-card-content>
+                <div class="header">
+                    <h2>Edit {{selectedEditProject.name}}</h2>
+                    <md-icon svgIcon="cross" (click)="close()"></md-icon>
+                </div>
+                <div class="form-group center">
+                    <input type="file" #fileInput name="avatar" accept="image/*" id="fileUpload" formControlName="project_image" hidden (change)="imgUpload($event)">
+                    <label md-mini-fab color="accent" for="fileUpload" mdTooltip="Change your profile image" mdTooltipPosition="before">
+                        <a md-mini-fab color="accent" id="uploadButton">
+                            <md-icon svgIcon="attach"></md-icon>
+                        </a>
+                    </label>
+                    <img id="img_preview" type="text" placeholder="Project Image" class="project-image" name="project_image" src="{{selectedEditProject.project_image}}"
+                    />
+                </div>
+                <div class="form-group dual-group">
+                    <input type="text" [(ngModel)]="selectedEditProject.id" formControlName="id" value="{{selectedEditProject.id}}" hidden>
+                    <md-input-container>
+                        <input mdInput [(ngModel)]="selectedEditProject.name" placeholder="Project Name" value="{{selectedEditProject.name}}" type="text" class="mdl-textfield__input"
+                            name="name" formControlName="name">
+                    </md-input-container>
+                    <md-input-container>
+                        <input mdInput [(ngModel)]="selectedEditProject.date" placeholder="Due Date" value="{{selectedEditProject.date}}" type="date" class="mdl-textfield__input"
+                            name="date" formControlName="date">
+                    </md-input-container>
+                </div>
+                <div class="form-group">
+                    <md-input-container>
+                        <textarea mdInput placeholder="Project Description" type="text" class="form-control" name="description" [(ngModel)]="selectedEditProject.description"
+                            formControlName="description"> </textarea>
+                    </md-input-container>
+                </div>
+                <div class="form-group">
+                </div>
+                <button type="submit" md-raised-button ripple color="accent">save</button>
+            </md-card-content>
+        </md-card>
+    </div>
+</form>
+

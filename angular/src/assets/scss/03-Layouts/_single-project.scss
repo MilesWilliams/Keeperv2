@@ -1,0 +1,133 @@
+.single-project {
+    .lower-nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        h1 {
+            margin: 0;
+            margin-right: 20px;
+        }
+        .project-details {
+            display: flex;
+            align-items: center;
+            md-icon {
+                margin-right: 20px;
+                          cursor: pointer;
+                &:hover {
+                    path,g {
+                        fill: $cta;
+                    }
+                }
+            }
+            svg {
+                g {
+                    fill: #4A4A4A;
+                }
+            }
+        }
+        h4 {
+            font-family: HelveticaNeue;
+            @include fontSize(16px);
+            color: #4A4A4A;
+            margin: 0;
+            margin-bottom: 4px;
+            line-height: 16px;
+        }
+        h6 {
+            /* 15 Days Remaining: */
+            font-family: HelveticaNeue;
+            @include fontSize(13px);
+            color: #D35847;
+            margin: 0;
+            line-height: 13px;
+        }
+    }
+    .tasks {
+        padding: 40px 65px;
+        margin-top: 60px;
+    }
+    .project-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        // margin-bottom: 20px;
+        p {
+            margin:0;
+        }
+    }
+    .sub-project {
+        // padding-bottom: 30px;
+        // border-bottom: 1px solid #eee;
+        margin-bottom: 20px;
+
+        &:last-of-type{
+            border-bottom: none;
+        }
+    }
+    .sub-project-info {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        md-icon {
+            margin-right: 12px;
+            width: 12px;
+            cursor: pointer;
+            &:hover {
+                path,g {
+                    fill: $cta;
+                }
+            }
+        }
+        h2 {
+            margin-right: 20px;
+            margin: 0 20px 0 0;
+            line-height: 1.125rem;
+        }
+        span {
+            color: $cta;
+        }
+        .triangle-icon {
+            md-icon {
+                transform: rotate(90deg);
+                transition: all 0.3s ease-in-out;
+            }
+            &.selectedTriangle {
+                md-icon {
+                    transform: rotate(0);
+                    transition: all 0.3s ease-in-out;
+                }
+            }
+        }
+    }
+    .project-tasks {
+        display: none;
+        height: 0;
+        opacity: 0;
+        padding: 0;
+        transition: all 0.3s ease-in-out;
+        li {
+            list-style: none;
+        }
+        md-card {
+            display: none;
+        }
+        
+        &.selectedSubProj {
+            display: block;
+            height: 100%;
+            opacity: 1;
+            padding: 0 26px;
+            transition: all 0.3s ease-in-out;
+            ul {
+                padding: 0;
+            }
+            md-card {
+                display: block;
+            }
+        }
+
+    }
+    .projectTask {
+        margin-bottom: 50px;
+    }
+}

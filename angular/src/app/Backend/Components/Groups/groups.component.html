@@ -1,0 +1,43 @@
+<div class="content-wrapper projects">
+	<div class="lower-nav">
+		<h1 >Groups <div *ngIf="allGroups.length <= 1"><span>|</span>{{allGroups.length}} group</div> <div *ngIf="allGroups.length > 1"><span>|</span>{{allGroups.length}} groups</div></h1>
+		<div class="layout-settings">
+			<md-icon svgIcon="block-layout"></md-icon>
+			<span>|</span>
+			<md-icon svgIcon="bar-layout"></md-icon>
+			<span>|</span>
+			<div class="filter">All Groups</div>
+		</div>
+	</div>
+    <div class="groups">
+		<ul class="block">
+			<ng-template ngFor let-group [ngForOf]="allGroups">
+				<md-card id="{{group.id}}" routerLink="/dashboard/group/{{group.id}}" class="card mdl-card mdl-shadow--2dp mdl-list__item" draggable="true" (click)="getProjects(group.project_groups)">
+					<div class="content">
+						<div class="card-header">
+							<div class="title">
+								<h2 >{{group.name}}</h2>
+								
+								<img *ngIf="group.group_image" src="{{group.group_image}}" alt="{{group.name}} image" width="75" height="75">
+							</div>
+						</div>
+						<div class="proj-details">
+							<p *ngIf="group.project_groups" >Projects: <span>{{group.project_groups.length}}</span></p>
+							<p class="description">{{group.description}}</p>
+							<h6 *ngIf="group.users" >Users: <span>{{group.users.length}}</span></h6>
+							<div *ngIf="group.users" class="users">
+								<ng-template ngFor let-user [ngForOf]="group.users">
+									<div>
+										<a routerLink="/dashboard/users/{{user.id}}">
+											<img src="{{user.user_avatar}}" alt="{{user.first_name}} {{user.last_name}} avatar" width="36" height="36" mdTooltip="{{user.first_name}} {{user.last_name}}" mdTooltipPosition="above">
+										</a>
+									</div>
+								</ng-template>
+							</div>
+						</div>
+					</div>
+				</md-card>
+			</ng-template>
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,19 @@
+.status {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    md-icon {
+        margin-right: 12px
+    }
+
+    h6 {
+        /* Contract: */
+        font-family: SourceSansPro-Semibold;
+        font-size: 14px;
+        color: #848C98;
+
+        &.active {
+            color: $cta;
+        }
+    }
+}

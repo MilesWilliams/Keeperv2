@@ -14,7 +14,7 @@ lib
 /tmp
 
 # dependencies
-./angular/node_modules
+angular/node_modules
 
 # IDEs and editors
 /.idea

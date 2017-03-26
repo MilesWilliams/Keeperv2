@@ -1,0 +1,11 @@
+.single-group {
+    .head-meta {
+        display: flex;
+        justify-content: space-between;
+
+        img {
+            border-radius: 50%;
+            border: 1px solid #eee;
+        }
+    }
+}

@@ -1,0 +1,46 @@
+<div class="content-wrapper single-project single-group" *ngIf="group">
+    <div class="lower-nav">
+        <div class="project-details">
+            <h1>Group: {{group.name}}</h1>
+        </div>
+    </div>
+    <div class="tasks">
+        <md-card>
+            <div class="head-meta">
+                <div class="description">
+                    <h4>Description</h4>
+                    <p>{{group.description}}</p>
+                </div>
+                <div class="group-image">
+                    <img *ngIf="group.group_image" src="{{group.group_image}}" alt="{{group.name}} image" width="75" height="75">
+                </div>
+            </div>
+            <div class="group-users" *ngIf="group.users">
+                <h4>Group Users</h4>
+                <div class="users">
+                    <ng-template ngFor let-user [ngForOf]="group.users">
+                        <a routerLink="/dashboard/users/{{user.id}}">
+                            <img src="{{user.user_avatar}}" alt="{{user.first_name}} {{user.last_name}} avatar" width="36" height="36" mdTooltip="{{user.first_name}} {{user.last_name}}" mdTooltipPosition="above">
+                        </a>
+                    </ng-template>
+                    <a ripple class="add-button"><md-icon svgIcon="plus"></md-icon>Add User</a>
+                </div>
+                
+            </div>
+            <div class="group-projects" *ngIf="group.project_groups">
+                <h4>Projects: <span>{{group.project_groups.length}}</span></h4>
+                <div class="projects-wrapper">
+                    <ng-template ngFor let-project [ngForOf]="group.project_groups">
+                        <div class="single-project" (click)="loadProjects(project)">
+                            <div class="inner-container">
+                                <md-icon svgIcon="desktop"></md-icon>
+                                <p>{{project}}</p>
+                            </div>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </md-card>
+
+    </div>
+</div>

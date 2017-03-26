@@ -1,0 +1,21 @@
+.content-wrapper {
+	overflow: hidden;
+	z-index: 1;
+	// min-height: 100vw;
+}
+body {
+	background-color: #ECF1F5;
+}
+
+.container {
+	width: 100%;
+	margin-top: 64px;
+	margin-left: 90px;
+	height: 100%;
+	z-index: 10;
+
+}
+.colon-decorator {
+	display: inline-block;
+	color: #2A3245 !important;
+}

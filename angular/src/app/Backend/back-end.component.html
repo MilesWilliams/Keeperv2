@@ -1,0 +1,47 @@
+<header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <div class="logo mdl-layout-title">
+            <a [routerLink]="['/dashboard']">
+                <md-icon svgIcon="logo" class="logo"></md-icon>
+            </a>
+        </div>
+        <!-- Add spacer, to align navigation to the right -->
+        <div class="mdl-layout-spacer"></div>
+        <div class="search">
+            <input type="text" name="search" value="" placeholder="Quick Find">
+        </div>
+        <div class="mdl-layout-spacer"></div>
+        <!-- Navigation -->
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" [routerLink]="['/dashboard/tasks/add']">
+                <md-icon svgIcon="add"></md-icon>
+            </a>
+            <a class="mdl-navigation__link" href="">
+                <md-icon svgIcon="alarm"></md-icon>
+            </a>
+            <a class="mdl-navigation__link profile-nav" href="">
+                <div class="avatar">
+                    <div class="avatar_image" *ngIf="(isConnected | async)">
+                        <img src="http://localhost:8000/media_cdn/Images/Avatars/0.jpg" alt="" width="36" height="36px">
+                        <md-icon svgIcon="online"></md-icon>
+                    </div>
+                    <div class="avatar_image" *ngIf="!(isConnected | async)">
+                        <img src="http://localhost:8000/media_cdn/Images/Avatars/0.jpg" alt="" width="36" height="36px">
+                        <md-icon svgIcon="offline"></md-icon>
+                    </div>
+                    <md-icon svgIcon="chevron"></md-icon>
+                </div>
+                <div class="profile-menu">
+
+                </div>
+            </a>
+        </nav>
+    </div>
+</header>
+<main>
+    <sidebar></sidebar>
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+

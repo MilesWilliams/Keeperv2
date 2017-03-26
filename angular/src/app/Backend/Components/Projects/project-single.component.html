@@ -1,0 +1,205 @@
+<div class="content-wrapper single-project">
+    <div class="lower-nav">
+        <div class="project-details">
+            <h1>{{project.name}}</h1>
+            <md-icon svgIcon="settings" (click)="editProject(project)" md-tooltip="Edit Project"></md-icon>
+            <md-icon svgIcon="add" (click)="addTask(project)" md-tooltip="Add a Task"></md-icon>
+           <div *ngIf="project.groups" class="users">
+               <ng-template ngFor let-group [ngForOf]="project.groups">
+                    <div>
+                        <a routerLink="/dashboard/groups/{{group.id}}">
+                            <img src="{{group.group_image}}" alt="{{group.name}} image" width="36" height="36" mdTooltip="{{group.name}}" mdTooltipPosition="above">
+                        </a>
+                    </div>
+               </ng-template>
+            </div>
+        </div>
+        <div class="due-date">
+            <h4>{{project.date | date}}</h4>
+            <h6>{{project.date | amDifference: today :'days' : false}} Days remaining</h6>
+        </div>
+    </div>
+    <div class="project-options">
+        <div class="project-status">
+            <h4>Project Status:</h4>
+            <div *ngIf="project.project_status == O">
+                <div class="status">
+                    <md-icon svgIcon="circle-cross"> </md-icon>
+                    <h6>Contract</h6>
+                </div>
+                <div class="status">
+                    <md-icon svgIcon="circle-cross"> </md-icon>
+                    <h6>Design</h6>
+                </div>
+                <div class="status">
+                    <md-icon svgIcon="circle-cross"> </md-icon>
+                    <h6>Coding</h6>
+                </div>
+                <div class="status">
+                    <md-icon svgIcon="circle-cross"> </md-icon>
+                    <h6>Seo</h6>
+                </div>
+            </div>
+            <div *ngIf="project.project_status == C">
+                <div class="status">
+                    <md-icon svgIcon="circle-tick"></md-icon>
+                    <h6 class="active">Contract</h6>
+                </div>
+                <div class="status">
+                    <md-icon svgIcon="circle-cross"> </md-icon>
+                    <h6>Design</h6>
+                </div>
+                <div class="status">
+                    <md-icon svgIcon="circle-cross"> </md-icon>
+                    <h6>Coding</h6>
+                </div>
+                <div class="status">
+                    <md-icon svgIcon="circle-cross"> </md-icon>
+                    <h6>Seo</h6>
+                </div>
+            </div>
+            <div *ngIf="project.project_status == IDF">
+                <div class="status">
+                    <md-icon svgIcon="circle-tick"></md-icon>
+                    <h6>Contract</h6>
+                </div>
+                <div class="status">
+                    <md-icon svgIcon="circle-cross"> </md-icon>
+                    <h6 class="active">Design</h6>
+                </div>
+                <div class="status">
+                    <md-icon svgIcon="circle-cross"> </md-icon>
+                    <h6>Coding</h6>
+                </div>
+                <div class="status">
+                    <md-icon svgIcon="circle-cross"> </md-icon>
+                    <h6>Seo</h6>
+                </div>
+            </div>
+            <div *ngIf='project.project_status == "CO"'>
+                <div class="status">
+                    <md-icon svgIcon="circle-tick"></md-icon>
+                    <h6>Contract</h6>
+                </div>
+                <div class="status">
+                    <md-icon svgIcon="circle-tick"> </md-icon>
+                    <h6>Design</h6>
+                </div>
+                <div class="status">
+                    <md-icon svgIcon="circle-cross"> </md-icon>
+                    <h6 class="active">Coding</h6>
+                </div>
+                <div class="status">
+                    <md-icon svgIcon="circle-cross"> </md-icon>
+                    <h6>Seo</h6>
+                </div>
+            </div>
+            <div *ngIf="project.project_status == SO">
+                <div class="status">
+                    <md-icon svgIcon="circle-tick"></md-icon>
+                    <h6>Contract</h6>
+                </div>
+                <div class="status">
+                    <md-icon svgIcon="circle-tick"> </md-icon>
+                    <h6>Design</h6>
+                </div>
+                <div class="status">
+                    <md-icon svgIcon="circle-tick"> </md-icon>
+                    <h6>Coding</h6>
+                </div>
+                <div class="status">
+                    <md-icon svgIcon="circle-cross"> </md-icon>
+                    <h6 class="active">Seo</h6>
+                </div>
+            </div>
+        </div>
+        <div class="task-stats" *ngIf="project.projecttasks">
+            <p>0 completed tasks / </p>
+            <p>{{project.projecttasks.length}} Tasks</p>         
+        </div>
+    </div>
+    <div class="search-bar">
+		<md-card>
+			<md-input-container>
+				<input  mdInput placeholder="Search Tasks" type="text" class="mdl-textfield__input" id="search" [(ngModel)]="term" />
+			</md-input-container>
+			<md-select [(ngModel)]="filter" placeholder="Filter By:" [ngModelOptions]="filter">
+                <ng-template ngFor let-state [ngForOf]="filters">
+					<md-option [value]="state.value">{{ state.code }}</md-option>
+                </ng-template>
+			</md-select>
+		</md-card>
+	</div>
+
+    <div class="tasks">
+        <ng-template ngFor let-subproject [ngForOf]="project.subprojects | searchSubproject:term">
+            <md-card class="sub-project">
+                <div *ngIf="project.subprojects" >
+                    <div class="project-header" >
+                        <div class="sub-project-info" (click)="onSelectSubProject(subproject)" >
+                            <div  class="triangle-icon" [class.selectedTriangle]="subproject === selectedSubProject">
+                                <md-icon svgIcon="triangle"></md-icon>
+                            </div>
+                            <h2>{{subproject.name}}</h2>
+                            <ng-template ngFor let-count="count" let-task [ngForOf]="subproject.subprojecttasks">
+                                <div >
+                                    <span *ngIf="task.completed != 1 || task.completed != true">{{count}}</span>
+                                </div>
+                            </ng-template>
+                        </div>
+                        <p>Due Date: {{subproject.date | date}}</p>
+                    </div>
+                    <div class="project-tasks" id="subproject-tasks" [class.selectedSubProj]="subproject === selectedSubProject">
+                        <div *ngIf="subproject.subprojecttasks">
+                            <md-card *ngIf="subproject.subprojecttasks.length < 1 " class="task-card">
+                                <p>There are currently no tasks</p>
+                                <a md-raised-button ripple color="accent" (click)="addTask(project)">Add Task</a>
+                                <a md-raised-button ripple color="warn">Delete Sub-Project</a>
+                            </md-card>
+                            <ul>
+                                <ng-template ngFor let-task [ngForOf]="subproject.subprojecttasks">
+                                    <li>
+                                        <md-card *ngIf="task.completed == 0 || task.completed == false" class="task-card" (click)="onSelect(task);" [class.selected]="task === selectedTask">
+                                            <md-card-content>
+                                            <div class="wrapper">
+                                                    <h4>{{task.title}}</h4>
+                                                    <p>Due: <span>{{task.due_date | date }}</span></p>
+                                                    <md-checkbox (click)="onChecked(task)"></md-checkbox>
+                                                </div>
+                                                <div class="content">
+                                                    <h6>Notes:</h6>
+                                                    <p>{{task.notes}}</p>
+                                                </div>
+                                            </md-card-content>
+                                        </md-card>
+                                    </li>
+                                </ng-template>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </md-card>
+        </ng-template>
+        <div *ngIf="project.subprojects == 0">
+            <ng-template ngFor let-tasks [ngForOf]="project.projecttasks">
+                <md-card class="task-card projectTask" (click)="onSelect(tasks);" [class.selected]="tasks === selectedTask">
+                    <md-card-content>
+                        <h4>{{tasks.title}}</h4>
+                        <p>Due: <span>{{tasks.due_date | date }}</span></p>
+                        <md-checkbox></md-checkbox>
+                    </md-card-content>
+                </md-card>
+            </ng-template>
+        </div>
+        <div *ngIf="project.subprojects == 0 && project.projecttasks == 0">
+            <md-card class="task-card">
+                <p>There are currently no tasks</p>
+                <a href="" md-raised-button ripple color="accent" (click)="addTask(project)">Add Task</a>
+                <a href="" md-raised-button ripple color="warn">Add Sub-Project</a>
+                <a href="" md-raised-button ripple color="warn">Delete Project</a>
+            </md-card>
+        </div>
+    </div>
+    <project-task-add [selectedProject]="selectedProject" (deselected)="closeForm($event)"></project-task-add>
+    <project-edit-modal [selectedEditProject]="selectedEditProject" (deselected)="closeForm($event)"></project-edit-modal>
+</div>

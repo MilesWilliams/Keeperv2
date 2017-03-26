@@ -1,0 +1,46 @@
+<div class="content-wrapper" *ngIf="tasks">
+	<div class="lower-nav">
+		<h1>Todays Tasks: <span>{{tasks.length}}</span></h1>
+	</div>
+	<div class="search-bar">
+		<md-card>
+			<md-input-container>
+				<input  mdInput placeholder="Search Tasks" type="text" class="mdl-textfield__input" id="search" [(ngModel)]="term" />
+			</md-input-container>
+			<md-select [(ngModel)]="filter" placeholder="Filter By:" [ngModelOptions]="filter">
+					<md-option *ngFor="let state of filters" [value]="state.value">{{ state.code }}</md-option>
+			</md-select>
+		</md-card>
+	</div>
+	<div class="todo">
+		<ul>
+			<ng-template ngFor let-task [ngForOf]="tasks | searchTask:term">
+				<li class="card task-card" draggable="true" (click)="onSelect(task)" [class.selected]="task === selectedTask">
+					<ng-template ngIf="task.completed === filter || filter === 'All'">
+						<md-card class="card task-card" draggable="true">
+							<md-card-content>
+								<div class="wrapper">	
+									<h4>{{task.title}}</h4>
+									<p>Due: <span>{{task.due_date | date }}</span></p>
+									<div *ngIf="task.completed === '0' || task.completed === false">
+										<md-checkbox [name]="" (change)="onChecked(task)" mdTooltip="Mark as completed"></md-checkbox>
+									</div>
+									<div *ngIf="task.completed === '1' || task.completed === true">
+										<md-checkbox [name]="task.completed" (change)="onChecked(task)" [(ngModel)]="task.completed"></md-checkbox>
+									</div>
+								</div>
+								<div class="content">
+									<h6>Notes:</h6>
+									<p>{{task.notes}}</p>
+								</div>
+							</md-card-content>
+						</md-card>
+					</ng-template>
+				</li>
+			</ng-template>
+		</ul>
+	</div>
+    <div *ngIf="tasks.length == 0">
+        <h1>You have no Tasks for today</h1>
+    </div>
+</div>

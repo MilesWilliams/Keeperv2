@@ -1,0 +1,56 @@
+.projects {
+	.projects {
+		margin-top: 60px;
+	}
+	.lower-nav {
+		align-items: center;
+		display: flex;
+		justify-content: space-between;
+		h1 {
+			margin-bottom: 0;
+			
+			display: flex;
+			align-items: center;
+			div {
+				color: #7F8FA4;
+				font-size: 16px;
+				/* 7 Projects: */
+				font-family: SourceSansPro-Regular;
+				letter-spacing: 0.5px;
+				margin-top: 7px;
+				span {
+					margin-left: 20px;
+					margin-right: 10px;
+					color: #7F8FA4;
+				}
+			}
+		}
+		.layout-settings {
+			display: flex;
+			align-items: center;
+			color: #7F8FA4;
+			md-icon {
+				width: 14px;
+				height: 14px;
+				display: flex;
+				cursor: pointer;
+				&:hover {
+					path,g {
+						fill: $cta;
+					}
+				}
+			}
+			span {
+				line-height: 20px;
+				font-size: 23px;
+				margin: 0 14px;
+				color: #DFE3E9;
+				-webkit-font-smoothing: antialiased;
+			}
+		}
+	}
+	ul {
+		display: flex;
+		flex-wrap: wrap;
+	}
+}

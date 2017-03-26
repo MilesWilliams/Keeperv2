@@ -1,0 +1,26 @@
+.project-options {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    margin-top: 66px;
+    padding: 0 30px;
+    justify-content: space-between;
+    h4 {
+        margin-right: 20px;
+        color: #7F8FA4;
+        @include fontSize(14px);
+    }
+    .project-status {
+        display: flex;
+        align-items: center;
+        >div {
+            display: flex;
+            justify-content: space-between;
+            width: 575px;
+        }
+
+    }
+    .task-stats {
+        display: flex;
+    }
+}

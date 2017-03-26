@@ -1,0 +1,11 @@
+//Function to calculate pixels into rems
+@function calculateRem($size) {
+    $remSize: $size / 16px;
+    @return #{$remSize}rem;
+}
+
+//Mixin to convert pixels into rems and adds pixel fallback;
+@mixin fontSize($size) {
+    font-size: $size; //Fallback in px
+    font-size: calculateRem($size);
+}

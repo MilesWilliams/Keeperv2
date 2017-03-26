@@ -1,0 +1,49 @@
+<div class="content-wrapper projects">
+	<div class="lower-nav">
+		<h1 >Projects <div *ngIf="projects.length <= 1"><span>|</span>{{projects.length}} project</div> <div *ngIf="projects.length > 1"><span>|</span>{{projects.length}} projects</div></h1>
+		<div class="layout-settings">
+			<md-icon svgIcon="block-layout"></md-icon>
+			<span>|</span>
+			<md-icon svgIcon="bar-layout"></md-icon>
+			<span>|</span>
+			<div class="filter">All Projects</div>
+		</div>
+	</div>
+	<div class="projects">
+		<ul class="block">
+			<md-card *ngFor="let project of projects" id="{{project.id}}" routerLink="/dashboard/projects/{{project.id}}" class="card mdl-card mdl-shadow--2dp mdl-list__item" draggable="true">
+				<div class="content">
+					<div class="card-header">
+						<div class="title">
+							<md-icon svgIcon="desktop"></md-icon>
+							<h2 >{{project.name}}</h2>
+						</div>
+						<p>Due: <span>{{project.date | date }}</span></p>
+					</div>
+					<div class="proj-details">
+						<p class="description">{{project.description}}</p>
+						<p *ngIf="project.subprojects" >Sub Projects: {{project.subprojects.length}}</p>
+						<p *ngIf="project.projecttasks" >{{project.projecttasks.length}} Tasks</p>
+						<div *ngIf="project.groups.length > 0" class="group-lockup">
+							<h4>Groups: </h4>
+							<div class="group-wrapper">
+								<div *ngFor="let group of project.groups" class="groups">
+									<img  *ngIf="group.group_image" src="{{group.group_image}}" alt="{{group.name}} logo" width="35" height="35"  mdTooltip="{{group.name}}" mdTooltipPosition="above">
+									<p *ngIf="!group.group_image">{{group.name}}</p>
+								</div>
+							</div>
+						</div>
+						<div *ngIf="project.groups.length == 0" class="add-group">
+							<a href="" md-raised-button ripple color="accent">Assign Group</a>
+						</div>
+						<!--<div class="users" *ngIf="project.users && project.groups">
+							<div *ngFor="let group of project.groups.users">
+								<img  *ngIf="project.users != group" src="{{group.group_image}}" alt="{{group.name}} logo" width="35" height="35" mdTooltip="{{group.name}}" mdTooltipPosition="above">
+							</div>
+						</div> -->
+					</div>
+				</div>
+			</md-card>
+		</ul>
+	</div>
+</div>
