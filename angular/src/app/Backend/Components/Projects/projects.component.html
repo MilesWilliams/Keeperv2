@@ -11,7 +11,8 @@
 	</div>
 	<div class="projects">
 		<ul class="block">
-			<md-card *ngFor="let project of projects" id="{{project.id}}" routerLink="/dashboard/projects/{{project.id}}" class="card mdl-card mdl-shadow--2dp mdl-list__item" draggable="true">
+            <ng-template ngFor let-project [ngForOf]="projects">
+			<md-card  id="{{project.id}}" routerLink="/dashboard/projects/{{project.id}}" class="card mdl-card mdl-shadow--2dp mdl-list__item" draggable="true">
 				<div class="content">
 					<div class="card-header">
 						<div class="title">
@@ -44,6 +45,7 @@
 					</div>
 				</div>
 			</md-card>
+            </ng-template>
 		</ul>
 	</div>
 </div>

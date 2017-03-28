@@ -1,6 +1,6 @@
-import { Component, ViewChild }       from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators }     			from '@angular/forms';
-import { GroupsService }   from '../../Services/groups.services';  
+import { Component, ViewChild }                               from '@angular/core';
+import { FormGroup, FormControl, FormBuilder, Validators }    from '@angular/forms';
+import { GroupsService }                                      from '../../Services/groups.services';  
 
 @Component({
     moduleId     : module.id,

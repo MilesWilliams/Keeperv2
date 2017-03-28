@@ -1,8 +1,6 @@
-from django.conf.urls import include, url
-from django.contrib import admin
+from django.conf.urls import url
 
 from .views import (
-    OrganizationOwnerListView,
     OrganizationListView,
     GroupCreateView,
     GroupDeleteView,
@@ -17,7 +15,6 @@ from .views import (
     )
 
 urlpatterns = [
-    url(r'^owner$', OrganizationOwnerListView.as_view(), name='owner'),
     url(r'^$', OrganizationListView.as_view(), name='organization'),
     url(r'^groups$', GroupsListView.as_view(), name='groups'),
     url(r'^groups/(?P<pk>\d+)$', GroupRetrieveView.as_view(), name='group-detail'),

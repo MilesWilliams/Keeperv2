@@ -46,6 +46,7 @@
 
 .profile-nav {
 	position: relative;
+	cursor: pointer;
 	.avatar {
 		display: flex;
 		align-items: center;
@@ -66,7 +67,7 @@
 			width: 12px;
 		}
 	}
-	&:hover {
+	&.activeNav {
 		.profile-menu{
 			display: block;
 		}

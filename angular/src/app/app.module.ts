@@ -31,6 +31,7 @@ import { AddProjectComponent }                              from './Backend/Comp
 import { GroupsComponent }                                  from './Backend/Components/Groups/groups.component';
 import { SingleGroupComponent }                             from './Backend/Components/Groups/single-group.component';
 import { AddGroupComponent }                                from './Backend/Components/Groups/add-group.component';
+import { ProfileComponent }                                 from './Backend/Components/Profile/profile.component';
 
 //Pipes
 import { SearchTaskPipe }                                   from './Backend/Pipes/Search-bar/search.pipe';
@@ -61,6 +62,7 @@ import { SearchSubProjectPipe }                             from './Backend/Pipe
     CompletedPipe,
     AddGroupComponent,
     AddProjectComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

@@ -12,8 +12,8 @@ admin.site.register(Organizations, OrganizationsAdmin)
 
 class UsersAdmin(admin.ModelAdmin):
 
-    list_display = ('first_name', 'last_name', 'email_address')
-    search_fields = ['first_name', 'last_name']
+    list_display = ('firstname', 'lastname', 'email')
+    search_fields = ['firstname', 'lastname']
     
     
 

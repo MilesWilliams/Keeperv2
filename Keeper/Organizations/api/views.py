@@ -1,3 +1,4 @@
+from Organizations.models import Organizations, Users, Groups
 from rest_framework.generics import (
     CreateAPIView,
     DestroyAPIView,
@@ -5,24 +6,21 @@ from rest_framework.generics import (
     UpdateAPIView,
     RetrieveAPIView,
 )
+from rest_framework.filters import (
+    SearchFilter,
+)
 from rest_framework.permissions import (
     AllowAny,
-    IsAuthenticated,
-    IsAdminUser,
     IsAuthenticatedOrReadOnly,
 )
-from django.contrib.auth.models import User
-from Organizations.models import Organizations, Users, Groups
-from .serializers import UserSerializer, OrganizationSerializer, GroupSerializer, UsersSerializer
+from .serializers import (
+    GroupSerializer,
+    UsersSerializer,
+    OrganizationSerializer,
+    )
 
+from .permissions import IsOwnerOrReadOnly
 
-
-class OrganizationOwnerListView(ListAPIView):
-    """
-    Organization Owner list view
-    """
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
 
 class OrganizationListView(ListAPIView):
     """
@@ -92,6 +90,8 @@ class UsersListView(ListAPIView):
     """
     queryset = Users.objects.all()
     serializer_class = UsersSerializer
+    filter_backends = [SearchFilter]
+    search_fields = ['email']
 
 class UsersUpdateView(UpdateAPIView):
     """
@@ -106,3 +106,4 @@ class UsersRetrieveView(RetrieveAPIView):
     """
     queryset = Users.objects.all()
     serializer_class = UsersSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly,)

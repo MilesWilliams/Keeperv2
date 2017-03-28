@@ -27,7 +27,7 @@ class Projects(models.Model):
     date = models.DateField("Completion Date", default=timezone.now, blank=True)
     project_image = models.ImageField("Project Image", blank=True, null=True,
                                       width_field="width_field", height_field="height_field",
-                                      upload_to="Images/", default="Images/None/no-img.gif")
+                                      upload_to="Images/", default="Images/None/none.png")
     width_field = models.IntegerField(default=0)
     height_field = models.IntegerField(default=0)
     description = models.TextField('Project Description', blank=True, null=True)

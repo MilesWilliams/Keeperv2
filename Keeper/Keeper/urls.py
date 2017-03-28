@@ -14,20 +14,19 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from organizations.backends import invitation_backend
+
 from django.conf import settings
+
 from django.conf.urls.static import static
-from rest_framework_jwt.views import obtain_jwt_token
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^accounts/', include('organizations.urls')),
-    url(r'^invitations/', include(invitation_backend().get_urls())),
-    url(r'^api/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api/auth/', include('Login.api.urls', namespace='login-api')),
     url(r'^api/tasks/', include('Tasks.api.urls', namespace='tasks-api')),
     url(r'^api/projects/', include('Project.api.urls', namespace='projects-api')),
     url(r'^api/organization/', include('Organizations.api.urls', namespace='users-api')),
-    url(r'^api-token-auth/', obtain_jwt_token),
+
 ]
 
 if settings.DEBUG:

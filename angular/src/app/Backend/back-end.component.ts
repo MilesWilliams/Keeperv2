@@ -13,6 +13,8 @@ import { GroupsService } from './Services/groups.services';
 export class BackEndComponent implements OnInit {
 	isConnected: Observable<boolean>;
 	groups = [{}]
+	selectedNav:any
+	isActive:Boolean = false;
 	constructor(private _groupService:GroupsService) {
 		this.isConnected = Observable.merge(
 			Observable.of(navigator.onLine),
@@ -33,5 +35,13 @@ export class BackEndComponent implements OnInit {
 				() => {sessionStorage.setItem('groups', JSON.stringify(this.groups));},
 				
 			)
+	}
+	onSelectActive(activeNav){
+		if (this.isActive === false) {
+			this.isActive = true;
+		}
+		else {
+			this.isActive = false;
+		}
 	}
 }

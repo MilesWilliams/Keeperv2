@@ -14,6 +14,7 @@ import { ProjectsAddModalComponent }from './Components/Modals/project-add.modal.
 import { GroupsComponent }          from './Components/Groups/groups.component';
 import { SingleGroupComponent }     from './Components/Groups/single-group.component';
 import { AddGroupComponent }        from './Components/Groups/add-group.component';
+import { ProfileComponent }         from './Components/Profile/profile.component'; 
 
 export const BackEndRoutes: Routes = [
     {
@@ -68,6 +69,10 @@ export const BackEndRoutes: Routes = [
                 path: 'groups/add',
                 component: AddGroupComponent,
             },
+            {
+                path: 'profile',
+                component: ProfileComponent,
+            }
         ]
         
     },

@@ -141,11 +141,12 @@
                                 <md-icon svgIcon="triangle"></md-icon>
                             </div>
                             <h2>{{subproject.name}}</h2>
-                            <ng-template ngFor let-count="count" let-task [ngForOf]="subproject.subprojecttasks">
-                                <div >
-                                    <span *ngIf="task.completed != 1 || task.completed != true">{{count}}</span>
-                                </div>
-                            </ng-template>
+                            <div *ngIf="subproject.subprojecttasks">
+                                <p>
+                                    Tasks: 
+                                    <span>{{subproject.subprojecttasks.length}}</span>
+                                </p>
+                            </div>
                         </div>
                         <p>Due Date: {{subproject.date | date}}</p>
                     </div>
