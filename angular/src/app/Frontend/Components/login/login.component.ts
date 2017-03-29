@@ -33,7 +33,8 @@ export class LoginComponent {
         this._loginService.userLogin(loginDetails)
             .subscribe(res => {
                   if(res != false) {
-                      localStorage.setItem('userdetails',JSON.stringify(res));
+                      sessionStorage.setItem('token',JSON.stringify(res.token));
+                      sessionStorage.setItem('email',JSON.stringify(res.email));
                       this.getUserDetails(loginDetails.email)
                       this.redirect(); // Redirect to the stored url after user is logged in
                  }
@@ -44,11 +45,11 @@ export class LoginComponent {
 
     }
 
-    private getUserDetails(email) {
+    getUserDetails(email) {
         this._loginService.getUserDetailsByEmail(email)
             .subscribe(
                 res => this.userDetails = res,
-                () => console.log(this.userDetails)
+                () => {sessionStorage.setItem('us',JSON.stringify(this.userDetails));}
             )
     }
     private redirect(): void {

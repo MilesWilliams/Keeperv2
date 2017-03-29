@@ -53,16 +53,15 @@ class UserLoginSerializer(ModelSerializer):
         else:
             raise ValidationError("This username/email is not valid.")
 
-        # if user_obj:
-        #     if not user_obj.check_password(password):
-        #         raise ValidationError("Incorrect credentials, please try again.")
+        if user_obj:
+            if not user_obj.check_password(password):
+                raise ValidationError("Incorrect credentials, please try again.")
 
         credentials = {'username': data.get("username"),
                        'password': data.get('password')}
 
         user_test = authenticate(**credentials)
         payload = jwt_payload_handler(user_test)
-        print(payload)
         data["userdetails"] = payload
         data["token"] = jwt_encode_handler(payload)
         return data

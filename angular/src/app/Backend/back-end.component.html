@@ -20,25 +20,27 @@
             <a class="mdl-navigation__link" href="">
                 <md-icon svgIcon="alarm"></md-icon>
             </a>
-            <li class="mdl-navigation__link profile-nav" (click)="onSelectActive(li)" [class.activeNav]="isActive">
-                <div class="avatar">
-                    <div class="avatar_image" *ngIf="(isConnected | async)">
-                        <img src="http://localhost:8000/media_cdn/Images/Avatars/0.jpg" alt="" width="36" height="36px">
-                        <md-icon svgIcon="online"></md-icon>
+            <ng-template ngFor let-user [ngForOf]="profile">
+                <li class="mdl-navigation__link profile-nav" (click)="onSelectActive(li)" [class.activeNav]="isActive">
+                    <div class="avatar">
+                        <div class="avatar_image" *ngIf="(isConnected | async)">
+                            <img src="{{user.user_avatar}}" alt="" width="36" height="36px">
+                            <md-icon svgIcon="online"></md-icon>
+                        </div>
+                        <div class="avatar_image" *ngIf="!(isConnected | async)">
+                            <img src="{{user.user_avatar}}" alt="" width="36" height="36px">
+                            <md-icon svgIcon="offline"></md-icon>
+                        </div>
+                        <md-icon svgIcon="chevron"></md-icon>
                     </div>
-                    <div class="avatar_image" *ngIf="!(isConnected | async)">
-                        <img src="http://localhost:8000/media_cdn/Images/Avatars/0.jpg" alt="" width="36" height="36px">
-                        <md-icon svgIcon="offline"></md-icon>
+                    <div class="profile-menu">
+                        <ul>
+                            <li><a [routerLink]="['/dashboard/profile']">Edit Profile</a></li>
+                            <li><a routerLink="/">Logout</a></li>
+                        </ul>
                     </div>
-                    <md-icon svgIcon="chevron"></md-icon>
-                </div>
-                <div class="profile-menu">
-                    <ul>
-                        <li><a routerLink="/dashboard/profile"> Profile</a></li>
-                        <li><a routerLink="/">Logout</a></li>
-                    </ul>
-                </div>
-            </li>
+                </li>
+            </ng-template>
         </nav>
     </div>
 </header>

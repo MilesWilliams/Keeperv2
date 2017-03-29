@@ -78,7 +78,7 @@ class UsersSerializer(ModelSerializer):
         """
         model = Users
         fields = (
-            'id',
+            'pk',
             'firstname',
             'lastname',
             'email',

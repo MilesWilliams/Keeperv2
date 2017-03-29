@@ -1,2 +1,15 @@
-<h1>My Profile</h1>
+<div class="content-wrapper single-project">
+    <div class="lower-nav">
+        <div class="project-details">
+            <h1>Profile</h1>
+        </div>
+    </div>
+    <div class="tasks">
+        <md-card>
+    <ng-template ngFor let-prof [ngForOf]="profile" >
+        <h1>{{prof.username}}</h1>
+    </ng-template>
+        </md-card>
+    </div>
+</div>
 
