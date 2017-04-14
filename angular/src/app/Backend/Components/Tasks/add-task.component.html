@@ -1,8 +1,10 @@
 <div class="content-wrapper">
+	<div class="lower-nav">
+		<h1>Create a Task<span *ngIf="todoAdd.item" class="colon-decorator" >: </span> {{todoAdd.item}}</h1>
+	</div>
 	<div class="todo">
 		<md-card>
 			<form [formGroup]="todoAdd" name="todoAddForm" (ngSubmit)="save()">
-				<h2>Add a Todo</h2>
 				<div class="form-group">
 					<md-input-container [ngClass]="active">
 						<input mdInput [(ngModel)]="todoAdd.item" placeholder="Title" value="{{todoAdd.title}}" class="mdl-textfield__input" type="text" name="title" id="input_1"  formControlName="title" required>

@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Component, OnInit, ViewChild }    from '@angular/core';
+import { FormGroup, FormControl }          from '@angular/forms';
+import { ActivatedRoute, Params }          from '@angular/router';
 
-import { Project } from '../../Models/project.model';
-import { ProjectsService } from '../../Services/projects.services';
+import { Project }                         from '../../Models/project.model';
+import { ProjectsService }                 from '../../Services/projects.services';
 
 @Component({
     moduleId : module.id,
@@ -19,7 +19,7 @@ export class ProjectEditComponent implements OnInit {
     image: string;
     @ViewChild("fileInput") fileInput;
 
-    constructor(private projectsService: ProjectsService, private route: ActivatedRoute){}
+    constructor(private _projectsService: ProjectsService, private _route: ActivatedRoute){}
 
     projectEdit = new FormGroup ({
         id: new FormControl(),
@@ -32,13 +32,12 @@ export class ProjectEditComponent implements OnInit {
     })
 
     ngOnInit() {
-        this.route.params
-            .switchMap((params: Params) => this.projectsService.projectId(params['id']))
+        this._route.params
+            .switchMap((params: Params) => this._projectsService.projectId(params['id']))
             .subscribe(project => this.project = project);
     }
 
     imgUpload(e: any) {
-        console.log('change')
         var img = document.getElementById("img_preview") as HTMLImageElement;;
         this._reader = new FileReader();
         this._reader.readAsDataURL(e.target.files[0]);

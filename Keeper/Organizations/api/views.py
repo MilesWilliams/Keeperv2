@@ -6,6 +6,7 @@ from rest_framework.generics import (
     UpdateAPIView,
     RetrieveAPIView,
 )
+from rest_framework.mixins import UpdateModelMixin, DestroyModelMixin
 from rest_framework.filters import (
     SearchFilter,
 )
@@ -35,7 +36,6 @@ class GroupCreateView(CreateAPIView):
     """
     queryset = Groups.objects.all()
     serializer_class = GroupSerializer
-    permission_classes = [AllowAny]
 
     def put(self, request, *args, **kwargs):
 
@@ -55,12 +55,17 @@ class GroupsListView(ListAPIView):
     queryset = Groups.objects.all()
     serializer_class = GroupSerializer
 
-class GroupUpdateView(UpdateAPIView):
+class GroupUpdateView(DestroyModelMixin, UpdateModelMixin, RetrieveAPIView):
     """
     Group Update view
     """
     queryset = Groups.objects.all()
     serializer_class = GroupSerializer
+    permission_classes = [AllowAny]
+
+    def put(self, request, *args, **kwargs):
+
+        return self.update(request, *args, **kwargs)
 
 class GroupRetrieveView(RetrieveAPIView):
     """
@@ -93,7 +98,7 @@ class UsersListView(ListAPIView):
     filter_backends = [SearchFilter]
     search_fields = ['email']
 
-class UsersUpdateView(UpdateAPIView):
+class UsersUpdateView(DestroyModelMixin, UpdateModelMixin, RetrieveAPIView):
     """
     Users update view
     """

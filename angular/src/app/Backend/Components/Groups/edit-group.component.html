@@ -1,0 +1,56 @@
+<div class="content-wrapper projects" *ngIf="group">
+	<div class="lower-nav">
+		<h1>Edit Group: {{group.name}}</h1>
+	</div>
+    <div class="groups edit-group">
+		<ul class="block">
+			<md-card class="card mdl-card mdl-shadow--2dp mdl-list__item">
+                <form [formGroup]="editGroupForm" name="editGroupForm" (ngSubmit)="save()">
+                    <div class="content">
+                        <div class="form-group">
+                            <input mdInput [(ngModel)]="group.id" value="{{group.id}}" class="mdl-textfield__input" type="text" name="title" id="input_1"  formControlName="id" hidden>
+                            <md-input-container>
+                                <input mdInput [(ngModel)]="group.name" placeholder="Name" value="{{group.name}}" class="mdl-textfield__input" type="text" name="title" id="input_1"  formControlName="name" required>
+                            </md-input-container>
+                        </div>
+                        <div class="file-upload">
+                            <img id="img_preview" class="avatar_preview" src="{{group.group_image}}" alt="">
+                            <input type="file" #fileInput name="avatar" accept="image/*" id="fileUpload" formControlName="group_image" (change)="imgUpload($event)"  hidden>
+                            <label md-mini-fab color="accent" for="fileUpload" mdTooltip="Add a Group Image" mdTooltipPosition="after">
+                                <a md-mini-fab color="accent" id="uploadButton" >
+                                    <md-icon class="material-icons">attach_file</md-icon>
+                                </a>
+                            </label>
+                        </div>	
+                        <div class="form-group">
+                            <md-input-container>
+                                <textarea mdInput [(ngModel)]="group.description" placeholder="Group Description" value="{{group.description}}" class="mdl-textfield__input" type="text" name="title" id="input_1"  formControlName="description"></textarea>
+                            </md-input-container>
+                        </div>
+                        <div class="form-group">
+                            <h2>Users</h2>
+                            <div *ngIf="groupArray">
+                                <div class="users" *ngIf="groupArray.length">
+                                    <ng-template ngFor let-user [ngForOf]="groupArray">
+                                        <div>
+                                            <img src="{{user.user_avatar}}" alt="{{user.firstname}} {{user.lastname}}">
+                                            <p>{{user.firstname}} {{user.lastname}}</p>
+                                        </div>
+                                    </ng-template>
+                                </div>
+                            </div>
+                            <form formGroupName="users" >
+                                <md-select formControlName="user" (change)="addUser(users)">
+                                    <ng-template ngFor let-user [ngForOf]="users">
+                                        <md-option value="{{user.pk}}">{{user.firstname}} {{user.lastname}}</md-option>
+                                    </ng-template>
+                                </md-select>
+                            </form>
+                        </div>
+                    </div>
+                    <button md-raised-button ripple color="accent" type="submit">Save</button>
+                </form>
+			</md-card>
+		</ul>
+	</div>
+</div>

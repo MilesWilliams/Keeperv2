@@ -1,4 +1,5 @@
 import { Component, OnInit, OnChanges } 								from '@angular/core';
+import { Router }                                             			from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators }     			from '@angular/forms';
 import { TaskService } 													from'../../Services/task.service';
 import { ProjectsService } 												from '../../Services/projects.services';
@@ -14,13 +15,17 @@ import { SubProject }                                                   from '..
 })
 
 export class AddTaskComponent implements OnInit {
+	public redirectUrl: string = '/dashboard/tasks/all';
 	todoAddForm = FormGroup;
 	project: Project;
 	public allProjectNames:Project = JSON.parse(sessionStorage.getItem("projects"));
 	public singleProject: Project = JSON.parse(sessionStorage.getItem("singleProj"));
     public subprojects:SubProject;
 
-	constructor(private taskService: TaskService, private projectService: ProjectsService, private subProjectsService:SubProjectsService ){}
+	constructor(private taskService: TaskService,
+				private _router:Router,
+				private projectService: ProjectsService, 
+				private subProjectsService:SubProjectsService ){}
 
 	getAllProjects() {
 		this.projectService.projectsAll()
@@ -48,10 +53,12 @@ export class AddTaskComponent implements OnInit {
     getSubProjects(id) {
 
         console.log(this.todoAdd.value.project)
+		console.log(id)
         this.subProjectsService.subprojectQuery(this.todoAdd.value.project)
             .subscribe(
                 (subprojects) => this.subprojects = subprojects,
                 (res) => console.log(res.subprojects.name),
+				
             )
 
       
@@ -84,7 +91,11 @@ export class AddTaskComponent implements OnInit {
 		console.log(newTodo)
 		this.taskService.taskCreate(newTodo)
             .subscribe(
-			    () => console.log(newTodo)
+				() => this.redirect()
             );
 	}
+
+	private redirect(): void {
+        this._router.navigate([this.redirectUrl]); //use the stored url here
+    }
 }

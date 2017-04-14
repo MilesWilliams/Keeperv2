@@ -1,3 +1,5 @@
+import { UserDetails } from './userdetails.model';
+
 export class Group {
     id :number;
     name : string;
@@ -5,7 +7,7 @@ export class Group {
     group_image : string;
     organizations : string;
     project_groups : any;
-    users : {};
+    users : UserDetails;
 
     component( 
         id :number,
@@ -14,7 +16,7 @@ export class Group {
         group_image: string,
         organizations: string,
         project_groups:any,
-        users: {},
+        users: UserDetails,
     )
     {
         this.id = id;

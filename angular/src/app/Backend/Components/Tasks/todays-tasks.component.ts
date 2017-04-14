@@ -30,8 +30,16 @@ export class TodaysTasksComponent implements OnInit {
 
         if (month<10) {
             var formatedMonth = '0' + month;
+        }else if(month>=10) {
+            var formatedMonth = "" + month;
         }
-        let formatedDate = year + '-' + formatedMonth + '-' + day;
+        if (day<10) {
+            var formatedDay = "0" + day;
+        }else if(day>=10) {
+            var formatedDay = "" + day;
+        }
+
+        let formatedDate = year + '-' + formatedMonth + '-' + formatedDay;
         console.log(formatedDate)
         this.taskService.taskSearch(formatedDate)
             .subscribe(
@@ -51,6 +59,7 @@ export class TodaysTasksComponent implements OnInit {
 		
 	}
     onChecked(task): void {
+        
 		if (task.completed == false || task.completed == 0 ) {
 			task.completed = 1
 		}
@@ -64,3 +73,5 @@ export class TodaysTasksComponent implements OnInit {
 			)
 	}
 }
+
+

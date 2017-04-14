@@ -1,6 +1,8 @@
 import { Component, ViewChild }                               from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators }    from '@angular/forms';
-import { GroupsService }                                      from '../../Services/groups.services';  
+import { Router }                                             from '@angular/router';
+import { GroupsService }                                      from '../../Services/groups.services'; 
+
 
 @Component({
     moduleId     : module.id,
@@ -10,10 +12,11 @@ import { GroupsService }                                      from '../../Servic
 }) 
 
 export class AddGroupComponent {
+    public redirectUrl: string = '/dashboard/groups'
     private _reader: FileReader;
     image : string;
     @ViewChild("fileInput") fileInput;
-    constructor(private groupservice: GroupsService){}
+    constructor(private _groupservice: GroupsService, private _router:Router){}
 
     addGroup = new FormGroup({
 		name 		    : new FormControl(),
@@ -67,11 +70,17 @@ export class AddGroupComponent {
             organizations: 1,
         }
         console.log(newGroup)
-        this.groupservice.createGroup(newGroup)
+        this._groupservice.createGroup(newGroup)
             .subscribe(
-                () => console.log(newGroup)
+                () => {console.log(newGroup),
+                        this.redirect();
+                }
+                
             );
     }
 
+    private redirect(): void {
+        this._router.navigate([this.redirectUrl]); //use the stored url here
+    }
     
 }

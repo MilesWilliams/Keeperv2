@@ -33,7 +33,8 @@ export class ProjectsService {
 
     projectsCreate(data) {
         const url = `${this.projectsUrl}/create`;
-        let header = new Headers({'Content-Type':'application/json'});
+        const token = JSON.parse(sessionStorage.getItem('token')) ;
+        let header = new Headers({'Authorization':'JWT ' + token, 'Content-Type':'application/json'});
         return this._http.put(url,JSON.stringify(data), {
             headers:header
         })
@@ -50,7 +51,8 @@ export class ProjectsService {
         const url = `${this.projectsUrl}/update/${id}/`;
         let objField = data;
         delete objField['id'];
-        let header = new Headers({ 'Content-Type': 'application/json' });
+        const token = JSON.parse(sessionStorage.getItem('token')) ;
+        let header = new Headers({'Authorization':'JWT ' + token, 'Content-Type':'application/json'});
         return this._http.put(url, JSON.stringify(objField), {
             headers: header
         })

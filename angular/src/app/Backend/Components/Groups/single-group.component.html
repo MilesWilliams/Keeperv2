@@ -2,6 +2,7 @@
     <div class="lower-nav">
         <div class="project-details">
             <h1>Group: {{group.name}}</h1>
+            <a [routerLink]="['edit']">Edit</a>
         </div>
     </div>
     <div class="tasks">
@@ -23,7 +24,7 @@
                             <img src="{{user.user_avatar}}" alt="{{user.first_name}} {{user.last_name}} avatar" width="36" height="36" mdTooltip="{{user.first_name}} {{user.last_name}}" mdTooltipPosition="above">
                         </a>
                     </ng-template>
-                    <a ripple class="add-button"><md-icon svgIcon="plus"></md-icon>Add User</a>
+                    <kp-button-dark message='Add User'></kp-button-dark>
                 </div>
                 
             </div>

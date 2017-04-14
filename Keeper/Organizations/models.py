@@ -134,7 +134,8 @@ class Groups(models.Model):
     name = models.CharField("Group Name", max_length=150, blank=False, null=False, default=None)
     description = models.TextField("Group Description", default=None, blank=True, null=True)
     organizations = models.ForeignKey(Organizations, related_name='Organization')
-    users = models.ManyToManyField(Users, related_name="Group_Users", blank=True, default=None)
+    users = models.ManyToManyField(Users, related_name="Group_Users", blank=True,
+                                   default=None, null=True)
 
     def __str__(self):
         return self.name

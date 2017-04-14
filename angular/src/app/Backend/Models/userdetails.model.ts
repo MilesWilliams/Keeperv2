@@ -1,18 +1,36 @@
 export class UserDetails {
-    user_id     : string;
-    username    : string;
-    email       : string;
-    exp         : string;
+    id              : string;
+    pk              : string;
+    firstname       : string;
+    lastname        : string;
+    email           : string;
+    username        : string;
+    date_created    : string;
+    date_modified   : string;
+    user_avatar     : string;
+    user_type       : string;
 
     constructor(
-        user_id     : string,
-        username    : string,
-        email       : string,
-        exp         : string,
+        id              : string,
+        pk              : string,
+        firstname       : string,
+        lastname        : string,
+        email           : string,
+        username        : string,
+        date_created    : string,
+        date_modified   : string,
+        user_avatar     : string,
+        user_type       : string,
     ){
-        this.user_id    = user_id;
-        this.username   = username;
-        this.email      = email;
-        this.exp        = exp;
+        this.id             = id;
+        this.pk             = pk;
+        this.firstname      = firstname;
+        this.lastname       = lastname;
+        this.email          = email;
+        this.username       = username;
+        this.date_created   = date_created;
+        this.date_modified  = date_modified;
+        this.user_avatar    = user_avatar;
+        this.user_type      = user_type;
     }
 }

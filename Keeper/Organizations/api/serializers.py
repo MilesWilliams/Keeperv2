@@ -12,7 +12,8 @@ from rest_framework.serializers import (
     EmailField,
     SerializerMethodField,
     ValidationError,
-    CharField
+    CharField,
+    PrimaryKeyRelatedField
     )
 from rest_framework.response import Response
 from Organizations.models import Organizations, Users, Groups
@@ -132,9 +133,9 @@ class GroupSerializer(ModelSerializer):
     Keeper Group serializer
     """
     # organizations = OrganizationSerializer(read_only=True)
-    users = UsersSerializer(many=True, read_only=False)
+    users = PrimaryKeyRelatedField(many=True, queryset=Users.objects.all())
     group_image = Base64ImageField(required=False)
-    project_groups = StringRelatedField(many=True)
+    project_groups = StringRelatedField(many=True, required=False)
     class Meta:
         """
         The Project model fields
@@ -149,4 +150,5 @@ class GroupSerializer(ModelSerializer):
             'project_groups',
             'users',
         )
+
         

@@ -32,7 +32,8 @@ export class GroupsService {
 
     createGroup(data){
         const url = `${this.groupsUrl}/create`;
-        let header = new Headers({'Content-Type':'application/json'});
+        const token = JSON.parse(sessionStorage.getItem('token')) ;
+        let header = new Headers({'Authorization':'JWT ' + token, 'Content-Type':'application/json'});
         return this._http.put(url,JSON.stringify(data), {
             headers:header
         })
@@ -45,9 +46,10 @@ export class GroupsService {
                    .catch(handleError);
     }
 
-    updateGroup(id:string, data){
+    updateGroup(id:number, data){
         const url = `${this.groupsUrl}/update/${id}`;
-        let header = new Headers({'Content-Type':'application/json'});
+        const token = JSON.parse(sessionStorage.getItem('token')) ;
+        let header = new Headers({'Authorization':'JWT ' + token, 'Content-Type':'application/json'});
         return this._http.put(url,JSON.stringify(data), {
             headers:header
         })
