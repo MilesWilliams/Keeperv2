@@ -70,7 +70,7 @@ class UsersSerializer(ModelSerializer):
     """
     Keeper custome User model serializer
     """
-    
+
     password = serializers.CharField(write_only=True, required=True)
     confirm_password = serializers.CharField(write_only=True, required=True)
     class Meta:
@@ -151,4 +151,26 @@ class GroupSerializer(ModelSerializer):
             'users',
         )
 
+class AllGroupsSerializer(ModelSerializer):
+    """
+    Keeper Group serializer
+    """
+    # organizations = OrganizationSerializer(read_only=True)
+    users = UsersSerializer(many=True, read_only=True)
+    group_image = Base64ImageField(required=False)
+    project_groups = StringRelatedField(many=True, required=False)
+    class Meta:
+        """
+        The Project model fields
+        """
+        model = Groups
+        fields = (
+            'id',
+            'name',
+            'description',
+            'group_image',
+            'organizations',
+            'project_groups',
+            'users',
+        )
         

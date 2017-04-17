@@ -1,6 +1,6 @@
 import { Component, OnInit } 		from '@angular/core';
 import { Router, ActivatedRoute } 	from '@angular/router';
-
+const dateformat = require('dateformat');
 import { ProjectsService } 			from '../../Services/projects.services';
 import { Project } 					from '../../Models/project.model';
 import { TaskService }				from '../../Services/task.service';
@@ -74,16 +74,20 @@ export class SingleProjectComponent implements OnInit {
 
 	onChecked(task): void {
 		if (task.completed == false || task.completed == 0 ) {
-			task.completed = 1
+			task.completed = 1;
+			let date = new Date();
+			// dateformat(date, 'dddd, mmmm dS, yyyy, h:MM:ss TT');
+			task.completed_on = dateformat(date, 'yyyy-mm-ddThh:mm');
 		}
 		else if(task.completed == true || task.completed == 1 ){
-			task.completed = 0
+			task.completed = 0;
+			task.completed_on = null;
 		}
-
-		this._taskService.taskUpdate(task.id, task)
-			.subscribe(
-				() => console.log(task),
-				() => this.ngOnInit()
-			)
+		console.log(task)
+		// this._taskService.taskUpdate(task.id, task)
+		// 	.subscribe(
+		// 		() => console.log(task),
+		// 		() => this.ngOnInit()
+		// 	)
 	}
 }

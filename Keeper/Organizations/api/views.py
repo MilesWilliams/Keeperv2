@@ -18,6 +18,7 @@ from .serializers import (
     GroupSerializer,
     UsersSerializer,
     OrganizationSerializer,
+    AllGroupsSerializer,
     )
 
 from .permissions import IsOwnerOrReadOnly
@@ -53,7 +54,7 @@ class GroupsListView(ListAPIView):
     Group list view
     """
     queryset = Groups.objects.all()
-    serializer_class = GroupSerializer
+    serializer_class = AllGroupsSerializer
 
 class GroupUpdateView(DestroyModelMixin, UpdateModelMixin, RetrieveAPIView):
     """

@@ -81,6 +81,19 @@ class TaskListApiView(ListAPIView):
     filter_backends = [SearchFilter]
     search_fields = ['due_date',]
 
+class CompletedTaskListApiView(ListAPIView):
+    """
+    em
+    """
+    serializer_class = TasksSerializer
+
+    def get_queryset(self):
+        """
+        This view should return a list of all the purchases
+        for the currently authenticated user.
+        """
+        return Tasks.objects.filter(completed=True)
+
 class TaskUpdateApiView(DestroyModelMixin, UpdateModelMixin, RetrieveAPIView):
     """
     em

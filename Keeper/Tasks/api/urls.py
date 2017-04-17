@@ -6,16 +6,18 @@ from .views import (
 		  TaskDetailView,
 		  TaskDetailByCompletedView,
 		  TaskListApiView,
+		  CompletedTaskListApiView,
 		  TaskUpdateApiView,
 		  ImageUploadView,
 		  ImageDeleteView,
-		  ImageDetailView
+		  ImageDetailView,
+
 	   )
 
 urlpatterns = [
 	   url(r'^$', TaskListApiView.as_view(), name='tasks'),
 	   url(r'^create$', TaskCreateView.as_view(), name='tasks-create'),
-	   url(r'^completed/$', TaskDetailByCompletedView.as_view(), name='tasks-completed'),
+	   url(r'^completed/$', CompletedTaskListApiView.as_view(), name='tasks-completed'),
 	   url(r'^(?P<pk>\d+)/$', TaskDetailView.as_view(), name='tasks-detail'),
 	   url(r'^update/(?P<pk>\d+)/$', TaskUpdateApiView.as_view(), name='tasks-detail'),
 	   url(r'^images/upload$', ImageUploadView.as_view(), name='image-upload'),

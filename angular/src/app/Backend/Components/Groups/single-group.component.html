@@ -2,7 +2,7 @@
     <div class="lower-nav">
         <div class="project-details">
             <h1>Group: {{group.name}}</h1>
-            <a [routerLink]="['edit']">Edit</a>
+            <a [routerLink]="['edit']"><kp-button-dark message='Edit'></kp-button-dark></a>
         </div>
     </div>
     <div class="tasks">
@@ -16,31 +16,32 @@
                     <img *ngIf="group.group_image" src="{{group.group_image}}" alt="{{group.name}} image" width="75" height="75">
                 </div>
             </div>
-            <div class="group-users" *ngIf="group.users">
+            <div class="group-users" *ngIf="groupArray">
                 <h4>Group Users</h4>
                 <div class="users">
-                    <ng-template ngFor let-user [ngForOf]="group.users">
-                        <a routerLink="/dashboard/users/{{user.id}}">
+                    <ng-template ngFor let-user [ngForOf]="groupArray">
+                        <a routerLink="/dashboard/users/{{user.pk}}">
                             <img src="{{user.user_avatar}}" alt="{{user.first_name}} {{user.last_name}} avatar" width="36" height="36" mdTooltip="{{user.first_name}} {{user.last_name}}" mdTooltipPosition="above">
                         </a>
                     </ng-template>
-                    <kp-button-dark message='Add User'></kp-button-dark>
                 </div>
                 
             </div>
-            <div class="group-projects" *ngIf="group.project_groups">
-                <h4>Projects: <span>{{group.project_groups.length}}</span></h4>
+            <ng-template ngFor let-projects [ngForOf]="groupProjects">
+            <div class="group-projects">
+                <h4>Projects: <span>{{projects.length}}</span></h4>
                 <div class="projects-wrapper">
-                    <ng-template ngFor let-project [ngForOf]="group.project_groups">
-                        <div class="single-project" (click)="loadProjects(project)">
+                    <ng-template ngFor let-project [ngForOf]="projects">
+                        <a routerLink="'dashboard/projects/{{project.id}}'" class="single-project" (click)="loadProjects(project)">
                             <div class="inner-container">
                                 <md-icon svgIcon="desktop"></md-icon>
-                                <p>{{project}}</p>
+                                <p>{{project.name}}</p>
                             </div>
-                        </div>
+                        </a>
                     </ng-template>
                 </div>
             </div>
+            </ng-template>
         </md-card>
 
     </div>
